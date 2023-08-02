@@ -1,28 +1,28 @@
-# Text-File-Compression
-
-# Text File Compression in Java
+# Text File Compression and Decompression in Java
 
 ## Overview
 
-This Java project implements a simple text file compression program that reduces the size of text files using Huffman coding. Huffman coding is an optimal prefix coding technique that assigns shorter codes to more frequent characters, resulting in efficient compression.
+This Java project implements a text file compression and decompression program using a combination of Run-Length Encoding (RLE) and Huffman coding techniques. The algorithm aims to reduce the size of text files by efficiently representing repetitive sequences and frequently occurring characters while allowing decompression to reconstruct the original file.
 
-## How the Compression Works
+## How the Algorithm Works
 
-1. Huffman Coding:
+1. Compression:
 
-   - The algorithm starts by reading the input text file and calculating the frequency of each character in the file.
-   - It then builds a Huffman tree based on the character frequencies, where characters with higher frequencies have shorter codes.
-   - The Huffman tree is used to generate a mapping of characters to their corresponding Huffman codes.
+   - Run-Length Encoding (RLE):
+     The algorithm starts with a pre-processing step using RLE. It scans the input text file and replaces consecutive repeated characters with a marker that denotes the character and the number of occurrences.
+     For example, if the algorithm finds "AAAAA" in the text, it will be compressed to "A5".
 
-2. Compression:
+   - Huffman Coding:
+     After RLE, the algorithm uses Huffman coding on the pre-processed data. It calculates the frequency of each character in the text and builds a Huffman tree based on these frequencies.
+     Characters that appear more frequently will have shorter codes in the Huffman tree, optimizing the compression.
 
-   - With the Huffman codes ready, the algorithm reads the input text file again, encoding each character with its corresponding Huffman code.
-   - The compressed output is written to a new file.
+   - Output:
+     The compressed output is written to a new file, containing both the Huffman tree (for decompression) and the compressed data.
 
-3. Decompression:
+2. Decompression:
 
-   - To decompress a compressed file, the algorithm reads the compressed file and reconstructs the Huffman tree using the header information.
-   - It then reads the compressed data and follows the Huffman codes to decode each character, recreating the original text.
+   - Decompression is performed by reading the compressed file and reconstructing the Huffman tree from the header information.
+   - The compressed data is then decoded using the Huffman tree and expanded back to its original form using the RLE markers.
 
 ## Usage
 
